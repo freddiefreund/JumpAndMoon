@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate() {
         if (_shouldJump)
         {
-            if (_jumpSphere.isOnGround && Time.time < _timestamp)
+            if (Time.time < _jumpSphere.timestamp || (_jumpSphere.isOnGround && Time.time < _timestamp))
             {
                 _shouldJump = false;
                 _rb.AddForce(transform.TransformDirection(new Vector3(0, 1000f, 0)));
