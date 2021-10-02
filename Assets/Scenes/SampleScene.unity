@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b5b53e6d23d5408a376b593b2d788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -3
+  gravity: -10
 --- !u!135 &676174094
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -968,6 +968,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4593122887304069304, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
+      propertyPath: jumpForce
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593122887304069304, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
+      propertyPath: movementSpeed
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593122887304069304, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
+      propertyPath: airSpeedMultiplier
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4593122887304069305, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1010,6 +1022,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4593122887304069305, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593122887304069308, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593122887304069309, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593122887304069309, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4593122887304069309, guid: c893ecb1d8a83c2489d87bf63a652706, type: 3}

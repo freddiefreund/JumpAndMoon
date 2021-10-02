@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         vAxis = Input.GetAxis("Vertical");
         hAxis = Input.GetAxis("Horizontal");
+        isGrounded = _jumpSphere.isOnGround;
 
         _moveDir = transform.forward * vAxis;
         if(!isGrounded)
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _lastjump = Time.time;
                     _shouldJump = false;
-                    _rb.AddForce(transform.TransformDirection(new Vector3(0, jumpForce, 0)));
+                    _rb.AddForce(transform.TransformDirection(new Vector3(0, jumpForce, 0)),ForceMode.Impulse);
                 }
             }
         }
