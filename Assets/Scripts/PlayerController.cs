@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,21 +9,22 @@ public class PlayerController : MonoBehaviour
     public float jumpVar = 0f;
 
     private Vector3 moveDir;
+    Rigidbody rb;
 
-    // Update is called once per frame
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     void Update()
     {
-        moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),jumpVar,Input.GetAxisRaw("Vertical")).normalized;
+        moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")).normalized;
         if(Input.GetKeyDown(KeyCode.Space)){
-            jumpVar = 1f;
-        }else if(!Input.GetKeyDown(KeyCode.Space) && jumpVar > 0f){
-            jumpVar -= 1.5f* Time.deltaTime;
+            rb.AddForce(transform.TransformDirection(new Vector3(0, 1000f, 0)));
         }
-        if(jumpVar < 0.1f)
-            jumpVar = 0;
     }
 
     void FixedUpdate() {
-        GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);   
+        rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);   
     }
 }
