@@ -10,16 +10,18 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 moveDir;
     Rigidbody rb;
+    JumpSphere _jumpSphere;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        _jumpSphere = GetComponentInChildren<JumpSphere>();
     }
 
     void Update()
     {
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")).normalized;
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) && _jumpSphere.isOnGround){
             rb.AddForce(transform.TransformDirection(new Vector3(0, 1000f, 0)));
         }
     }
