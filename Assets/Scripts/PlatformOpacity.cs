@@ -22,7 +22,7 @@ public class PlatformOpacity : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(_player.position, transform.position);
-        if (distance < 20)
+        if (distance < 25)
         {
             SetTransparency(1f);
         }

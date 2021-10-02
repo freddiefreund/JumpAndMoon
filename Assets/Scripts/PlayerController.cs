@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Animator anim;
     public float jumpForce = 1000;
     public float rotationSpeed = 4;
     public float movementSpeed = 8;
@@ -33,7 +34,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        _moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")).normalized;
         if(Input.GetKeyDown(KeyCode.Space))
         {
             _timestamp = Time.time + _jumpperiod;
@@ -47,9 +47,12 @@ public class PlayerController : MonoBehaviour
         hAxis = Input.GetAxis("Horizontal");
         isGrounded = _jumpSphere.isOnGround;
 
+        anim.SetFloat("movement", vAxis);
         _moveDir = transform.forward * vAxis;
         if(!isGrounded)
             _moveDir *= airSpeedMultiplier;
+        else
+            anim.SetTrigger("jumpstop");
         
         _rb.AddForce(_moveDir * movementSpeed);
         
@@ -61,6 +64,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(timesinceJump);
                 if (timesinceJump > 0.25f)
                 {
+                    anim.SetTrigger("jumpstart");
                     _lastjump = Time.time;
                     _shouldJump = false;
                     _rb.AddForce(transform.TransformDirection(new Vector3(0, jumpForce, 0)),ForceMode.Impulse);
