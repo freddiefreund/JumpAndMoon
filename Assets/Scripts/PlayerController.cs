@@ -15,10 +15,12 @@ public class PlayerController : MonoBehaviour
 
     float _timestamp;
     float _jumpperiod = 0.2f;
+    float _lastjump;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _lastjump = Time.time;
         _jumpSphere = GetComponentInChildren<JumpSphere>();
     }
 
@@ -35,10 +37,16 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate() {
         if (_shouldJump)
         {
+            float timesinceJump = Time.time - _lastjump;
             if (Time.time < _jumpSphere.timestamp || (_jumpSphere.isOnGround && Time.time < _timestamp))
             {
-                _shouldJump = false;
-                _rb.AddForce(transform.TransformDirection(new Vector3(0, 1000f, 0)));
+                Debug.Log(timesinceJump);
+                if (timesinceJump > 0.25f)
+                {
+                    _lastjump = Time.time;
+                    _shouldJump = false;
+                    _rb.AddForce(transform.TransformDirection(new Vector3(0, 1000f, 0)));
+                }
             }
         }
         _rb.MovePosition(_rb.position + transform.TransformDirection(_moveDir) * moveSpeed * Time.deltaTime);   
