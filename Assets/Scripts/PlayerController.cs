@@ -77,4 +77,17 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(new Vector3(0, hAxis * rotationSpeed, 0));
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Platform"))
+        {
+            PlatformOpacity script = other.GetComponent<PlatformOpacity>();
+            if (!script.wasHitBefore)
+            {
+                Debug.Log("first");
+            }
+            script.hit();
+        }
+    }
 }

@@ -7,6 +7,19 @@ public class PlatformOpacity : MonoBehaviour
 {
     Transform _player;
     Renderer _renderer;
+
+    public bool wasHitBefore = false;
+
+    public void hit()
+    {
+        wasHitBefore = true;
+        Color color = _renderer.material.GetColor("_AlbedoColor");
+        color.r = 1;
+        color.g = 0;
+        color.b = 0;
+        _renderer.material.SetColor("_AlbedoColor", color);
+    }
+    
     void Start()
     {
         _player = FindObjectOfType<PlayerController>().GetComponent<Transform>();
