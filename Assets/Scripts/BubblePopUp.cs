@@ -15,6 +15,13 @@ public class BubblePopUp : MonoBehaviour
     [SerializeField] private Sprite boing;
     [SerializeField] private Sprite wham;
 
+    [SerializeField] private AudioClip powSound;
+    [SerializeField] private AudioClip bangSound;
+    [SerializeField] private AudioClip boingSound;
+    [SerializeField] private AudioClip whamSound;
+
+    [SerializeField] private AudioSource audioSource;
+
     [SerializeField] private Image image;
     void Start()  
     {
@@ -31,16 +38,24 @@ public class BubblePopUp : MonoBehaviour
 
     public void PopUp()
     {
-        int selection = Random.Range(0, 3);
+        int selection = Random.Range(0, 4);
         switch (selection)
         {
             case 0: image.sprite = pow;
+                audioSource.clip = powSound;
+                audioSource.Play();
                 break;
             case 1: image.sprite = bang;
+                audioSource.clip = bangSound;
+                audioSource.Play();
                 break;
             case 2: image.sprite = boing;
+                audioSource.clip = boingSound;
+                audioSource.Play();
                 break;
             case 3: image.sprite = wham;
+                audioSource.clip = whamSound;
+                audioSource.Play();
                 break;
         }
         transform.DOScale(1, growTime).SetEase(Ease.OutElastic).OnComplete(PopAway);
