@@ -6,7 +6,7 @@ using UnityEngine;
 public class JumpSphere : MonoBehaviour
 {
     public bool isOnGround;
-    // Start is called before the first frame update
+    
     void Start()
     {
         isOnGround = false;
