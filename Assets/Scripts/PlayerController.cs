@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Animator anim;
+    [SerializeField] private BubblePopUp bubble;
     public float jumpForce = 1000;
     public float rotationSpeed = 4;
     public float movementSpeed = 8;
@@ -38,6 +39,11 @@ public class PlayerController : MonoBehaviour
         {
             _timestamp = Time.time + _jumpperiod;
             _shouldJump = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            anim.SetTrigger("finish");
         }
     }
 
@@ -85,7 +91,7 @@ public class PlayerController : MonoBehaviour
             PlatformOpacity script = other.GetComponent<PlatformOpacity>();
             if (!script.wasHitBefore)
             {
-                Debug.Log("first");
+                bubble.PopUp();
             }
             script.hit();
         }
